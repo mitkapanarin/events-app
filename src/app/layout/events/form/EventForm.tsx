@@ -28,12 +28,12 @@ function EventForm({ setFormOpen, addEvent }: Props) {
       hostPhotoURL: "",
       attendees: [],
     });
+    setFormOpen(false);
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
-    setFormOpen(false);
   };
 
   return (

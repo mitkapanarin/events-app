@@ -17,13 +17,21 @@ const EventDashboard = ({ formOpen, setFormOpen }: Props) => {
     SetEvents(sampleData);
   }, []);
 
+  const addEvent = (event: AppEvent) => {
+    SetEvents((prevState) => {
+      return [...prevState, event];
+    });
+  };
+
   return (
     <Grid>
       <Grid.Column width={10}>
         <EventList events={events} />
       </Grid.Column>
       <Grid.Column width={6}>
-        {formOpen && <EventForm setFormOpen={setFormOpen} />}
+        {formOpen && (
+          <EventForm setFormOpen={setFormOpen} addEvent={addEvent} />
+        )}
       </Grid.Column>
     </Grid>
   );

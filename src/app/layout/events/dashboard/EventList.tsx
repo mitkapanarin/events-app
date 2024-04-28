@@ -1,12 +1,11 @@
 import { EventListItem } from "./EventListItem";
 
-export const EventList = () => {
+export const EventList = (props: any) => {
   return (
     <>
-      <EventListItem />
-      <EventListItem />
-      <EventListItem />
-      <EventListItem />
+      {props.events.map((event: any) => (
+        <EventListItem key={event.id} event={event} />
+      ))}
     </>
   );
 };

@@ -8,7 +8,7 @@ const App = () => {
   const [formOpen, setFormOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<AppEvent | null>(null);
 
-  const handleSelectEvent = (event: AppEvent) => {
+  const handleSelectEvent = (event: AppEvent | null) => {
     setSelectedEvent(event);
     setFormOpen(true);
   };

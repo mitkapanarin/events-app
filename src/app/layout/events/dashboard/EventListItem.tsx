@@ -12,9 +12,10 @@ import { AppEvent } from "../../../types/event";
 
 type Props = {
   event: AppEvent;
+  selectEvent: (event: AppEvent) => void;
 };
 
-export const EventListItem = ({ event }: Props) => {
+export const EventListItem = ({ event, selectEvent }: Props) => {
   return (
     <SegmentGroup>
       <Segment>
@@ -47,7 +48,12 @@ export const EventListItem = ({ event }: Props) => {
       </Segment>
       <Segment clearing>
         <span>{event.description}</span>
-        <Button color="teal" floated="right" content="View" />
+        <Button
+          color="teal"
+          floated="right"
+          content="View"
+          onClick={() => selectEvent(event)}
+        />
       </Segment>
     </SegmentGroup>
   );

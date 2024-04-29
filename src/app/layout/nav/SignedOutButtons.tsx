@@ -1,9 +1,13 @@
 import { Button, MenuItem } from "semantic-ui-react";
 
-const SignedOutButtons = () => {
+type Props = {
+  setAuth: (value: boolean) => void;
+};
+
+const SignedOutButtons = ({ setAuth }: Props) => {
   return (
     <MenuItem position="right">
-      <Button basic inverted content="Login" />
+      <Button basic inverted content="Login" onClick={() => setAuth(true)} />
       <Button
         basic
         inverted

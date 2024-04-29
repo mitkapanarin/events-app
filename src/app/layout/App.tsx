@@ -3,6 +3,7 @@ import EventDashboard from "./events/dashboard/EventDashboard";
 import { NavBar } from "./nav/NavBar";
 import { useState } from "react";
 import { AppEvent } from "../types/event";
+import { Outlet } from "react-router-dom";
 
 const App = () => {
   const [formOpen, setFormOpen] = useState(false);
@@ -22,12 +23,7 @@ const App = () => {
     <div>
       <NavBar setFormOpen={handleCreateFormOpen} />
       <Container className="main">
-        <EventDashboard
-          formOpen={formOpen}
-          setFormOpen={setFormOpen}
-          selectedEvent={selectedEvent}
-          selectEvent={handleSelectEvent}
-        />
+        <Outlet />
       </Container>
     </div>
   );

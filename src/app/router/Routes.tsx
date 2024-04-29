@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../layout/App";
 import EventDashboard from "../layout/events/dashboard/EventDashboard";
-import EventDetailsPage from "../layout/events/details/EventDetailsPage";
+import EventDetailsPage from "../layout/events/details/EventDetailedPage";
 import EventForm from "../layout/events/form/EventForm";
 
 export const router = createBrowserRouter([

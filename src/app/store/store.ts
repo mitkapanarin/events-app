@@ -1,9 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
+import { testSlice } from "../features/scratch/testSlice";
+import { eventSlice } from "../layout/events/eventSlice";
 // ...
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    test: testSlice.reducer,
+    events: eventSlice.reducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

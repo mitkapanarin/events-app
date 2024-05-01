@@ -6,6 +6,9 @@ import { createEvent, updateEvent } from "../eventSlice";
 import { createId } from "@paralleldrive/cuid2";
 import { Controller, FieldValues, useForm } from "react-hook-form";
 import { categoryOptions } from "./categoryOptions";
+import "react-datepicker/dist/react-datepicker.css";
+import ReactDatePicker from "react-datepicker";
+// import DatePicker
 
 function EventForm() {
   const {
@@ -85,15 +88,26 @@ function EventForm() {
           {...register("venue", { required: true })}
           error={errors.venue && "venue is required"}
         />
-
-        <Form.Input
-          type="date"
-          placeholder="Date"
-          defaultValue={event?.date || ""}
-          {...register("date", { required: true })}
-          error={errors.date && "date is required"}
-        />
-
+        <Form.Field>
+          <Controller
+            name="date"
+            control={control}
+            rules={{ required: "Date is required" }}
+            defaultValue={(event && new Date(event.date)) || null}
+            render={({ field }) => (
+              <ReactDatePicker
+                selected={field.value}
+                onChange={(value) =>
+                  setValue("date", value, { shouldValidate: true })
+                }
+                showTimeSelect
+                timeCaption="time"
+                dateFormat="MMM d, yyyy h:mm aa"
+                placeholderText="Event Date and Time"
+              />
+            )}
+          />
+        </Form.Field>
         <Button
           disabled={!isValid}
           loading={isSubmitting}

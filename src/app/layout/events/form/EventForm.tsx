@@ -4,12 +4,15 @@ import { Button, Form, Header, Segment } from "semantic-ui-react";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { createEvent, updateEvent } from "../eventSlice";
 import { createId } from "@paralleldrive/cuid2";
-import { FieldValues, useForm } from "react-hook-form";
+import { Controller, FieldValues, useForm } from "react-hook-form";
+import { categoryOptions } from "./categoryOptions";
 
 function EventForm() {
   const {
     register,
     handleSubmit,
+    control,
+    setValue,
     formState: { errors, isValid, isSubmitting },
   } = useForm({ mode: "onTouched" });
   let { id } = useParams();
@@ -46,14 +49,22 @@ function EventForm() {
           {...register("title", { required: true })}
           error={errors.title && "Title is required"}
         />
-
-        <Form.Input
-          placeholder="Category"
-          defaultValue={event?.category || ""}
-          {...register("category", { required: true })}
-          error={errors.category && "category is required"}
+        <Controller
+          name="category"
+          control={control}
+          rules={{ required: "category is required" }}
+          defaultValue={event?.category}
+          render={({ field }) => (
+            <Form.Select
+              options={categoryOptions}
+              placeholder="Category"
+              clearable
+              {...field}
+              onChange={(_e, d) => setValue("category", d.value)}
+              error={errors.category && "category is required"}
+            />
+          )}
         />
-
         <Form.TextArea
           placeholder="Description"
           defaultValue={event?.description || ""}

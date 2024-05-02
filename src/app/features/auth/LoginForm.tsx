@@ -3,6 +3,7 @@ import { Button, Form } from "semantic-ui-react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useAppDispatch } from "../../store/store";
 import { closeModal } from "../../common/modals/modalSlice";
+import { signIn } from "./authSlice";
 
 const LoginForm = () => {
   const {
@@ -14,7 +15,7 @@ const LoginForm = () => {
   const dispatch = useAppDispatch();
 
   const onSubmit = (data: FieldValues) => {
-    console.log(data);
+    dispatch(signIn(data));
     dispatch(closeModal());
   };
 
